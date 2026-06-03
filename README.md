@@ -24,6 +24,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 25px rgba(0,0,0,0.06);
             border-top: 6px solid #a8dadc; /* أزرق فاتح */
+            position: relative;
         }
         h2 {
             text-align: center;
@@ -241,6 +242,102 @@
             padding: 15px;
             border-radius: 6px;
         }
+
+        /* 📞 تصميم زر النافذة العائمة المنبثقة للدعم الفني */
+        .support-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #a8dadc; /* أزرق فاتح مائل للأخضر البارد */
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            transition: transform 0.2s;
+        }
+        .support-btn:hover {
+            transform: scale(1.1);
+        }
+        .support-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: #1d3557;
+        }
+        /* نافذة الدعم الفني المنبثقة (Popup) */
+        .support-popup {
+            position: fixed;
+            bottom: 105px;
+            left: 30px;
+            width: 320px;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border: 1px solid #e9ecef;
+            display: none;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 10000;
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .support-popup-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1d3557;
+            text-align: center;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .support-link {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background 0.2s;
+            border-right: 5px solid;
+        }
+        .support-link.whatsapp {
+            background-color: #f1fbf4;
+            border-color: #2a9d8f; /* أخضر */
+        }
+        .support-link.whatsapp:hover { background-color: #e3f7eb; }
+        .support-link.linkedin {
+            background-color: #f0f7fa;
+            border-color: #457b9d; /* أزرق */
+        }
+        .support-link.linkedin:hover { background-color: #e1f0f7; }
+        
+        .support-link-label {
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .support-link.whatsapp .support-link-label { color: #2a9d8f; }
+        .support-link.linkedin .support-link-label { color: #457b9d; }
+        
+        .support-link-val {
+            font-size: 13px;
+            color: #333333;
+            margin-top: 4px;
+            word-break: break-all;
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
@@ -413,7 +510,45 @@
     </div>
 </div>
 
+<div class="support-btn" onclick="toggleSupportPopup()" title="للتواصل والدعم الفني">
+    <svg viewBox="0 0 24 24">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </svg>
+</div>
+
+<div class="support-popup" id="supportPopup">
+    <div class="support-popup-title">
+        <span>📞 للتواصل والدعم الفني</span>
+    </div>
+    
+    <a href="https://wa.me/966532219777" target="_blank" class="support-link whatsapp">
+        <div class="support-link-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.742.002-2.602-1.01-5.05-2.85-6.892-1.84-1.842-4.29-2.856-6.894-2.856-5.442 0-9.866 4.372-9.87 9.746-.002 1.741.465 3.441 1.352 4.954l-.452 1.65 1.692-.444z"/></svg>
+            WhatsApp:
+        </div>
+        <div class="support-link-val">0532219777</div>
+    </a>
+    
+    <a href="https://www.linkedin.com/in/majed-alharbi-shrm-cp-2651071b6" target="_blank" class="support-link linkedin">
+        <div class="support-link-label">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            LinkedIn:
+        </div>
+        <div class="support-link-val">majed-alharbi-shrm-cp-2651071b6</div>
+    </a>
+</div>
+
 <script>
+// دالة إظهار وإخفاء نافذة الدعم الفني المنبثقة
+function toggleSupportPopup() {
+    const popup = document.getElementById('supportPopup');
+    if (popup.style.display === 'flex') {
+        popup.style.display = 'none';
+    } else {
+        popup.style.display = 'flex';
+    }
+}
+
 // دالة إظهار الحقل المخصص للمادة 77 ديناميكياً
 function toggleArticle77Input() {
     const reason = document.getElementById('reason').value;
@@ -538,13 +673,12 @@ function calculateSettlement() {
     document.getElementById('pdfBtn').style.display = 'block';
 }
 
-// دالة التصدير المباشرة والمضمونة لملف PDF (تم حل مشكلة الصفحة البيضاء)
+// دالة التصدير المباشرة والمضمونة لملف PDF
 function exportToPDF() {
     const resultBox = document.getElementById('resultBox');
     const element = document.getElementById('pdfContent');
     const empName = document.getElementById('empName').value || 'Employee';
     
-    // حل هندسي: إظهار العنصر مؤقتاً بصورة كاملة للمكتبة لتجنب اللقطة الفارغة
     const originalStyle = resultBox.style.display;
     resultBox.style.display = 'block';
 
@@ -556,7 +690,6 @@ function exportToPDF() {
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    // تنفيذ التصدير ثم إعادة الحالة كما كانت بشكل صامت
     html2pdf().set(opt).from(element).save().then(() => {
         resultBox.style.display = originalStyle;
     });
